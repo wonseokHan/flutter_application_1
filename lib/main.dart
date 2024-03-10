@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: '플러터 데모 페이지'),
     );
   }
 }
@@ -56,6 +58,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String title = '한원석';
+  var obj = {
+    'name' : '한원석',
+    'age' : 29
+  };
+  List<int> items = [1, 2, 3, 4];
 
   void _incrementCounter() {
     setState(() {
@@ -65,6 +73,29 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void onChangeTitle() {
+    String value = title;
+    var hisAge = obj['age'];
+    var hisName = obj['name'];
+
+    for (var obj in items) {
+      print(obj);
+    }
+    for (var i = 0; i < items.length; i++) {
+      print('기본 포문:');
+      print(items[i]);
+    }
+    
+    List<int> doubleNumbers = [];
+    doubleNumbers = items.map((num) => 
+      num * 2
+    ).toList();
+    value = items.map((e) => e * 2).join(', ');
+    setState(() {
+      title = '시발 바뀌노?';
     });
   }
 
@@ -112,6 +143,16 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const Text(
+              '어그리게이션 테스트',
+            ),
+            TextButton(
+              onPressed: onChangeTitle, 
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.headlineMedium,
+              )
+            )
           ],
         ),
       ),
